@@ -3,8 +3,8 @@ function getRepositories(){
   req.addEventListener("load", showRepositories);
   let username = document.getElementById("input").innerHTML
   console.log(username)
-  req.open("GET", 'https://api.github.com/users/'+ username +'/repos')
-  req.send()
+  //req.open("GET", 'https://api.github.com/users/'+ username +'/repos')
+  //req.send()
 }
 function showRepositories(event, data) {
   var repos = JSON.parse(this.responseText)
