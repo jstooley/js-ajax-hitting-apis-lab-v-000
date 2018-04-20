@@ -1,15 +1,16 @@
 const rootURL= "https://api.github.com"
-function getRepositories(){
-  const req = new XMLHttpRequest();
+function getRepositories() {
+  const username = document.getElementById("username").value
+  const url = rootURL + "/users/" + username + "/repos"
+  const req = new XMLHttpRequest()
   req.addEventListener("load", displayRepositories);
-  let username = document.getElementById("username").value
-  req.open("GET", 'https://api.github.com/users/'+ username +'/repos')
+  req.open("GET", url)
   req.send()
 }
+
 function displayRepositories(event, data) {
   var repos = JSON.parse(this.responseText)
-  console.log(repos)
-  const repoList = `<ul>${repos.map(r => '<li>' + r.name + ' - <a href="#" data-repo="' + r.name + '" onclick="getCommits(this)">Display Commits</a></li>').join('')}</ul>`
+  const repoList = `<ul>${repos.map(r => '<li>' + r.name + ' ' + r.owner.login + ' ' + r.html_url + ' - <a href="#" data-repository="' + r.name + '" data-username="' + r.owner.login + '" onclick="getCommits(this)">Get Commits</a> - <a href="#" data-repository="' + r.name +'" data-username="' + r.owner.login + '" onclick="getBranches(this)">Get Branches</a></li>').join('')}</ul>`
   document.getElementById("repositories").innerHTML = repoList
 }
 function getCommits(el) {
