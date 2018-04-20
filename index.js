@@ -1,4 +1,5 @@
 const rootURL= "https://api.github.com"
+
 function getRepositories() {
   const username = document.getElementById("username").value
   const url = rootURL + "/users/" + username + "/repos"
@@ -13,6 +14,7 @@ function displayRepositories(event, data) {
   const repoList = `<ul>${repos.map(r => '<li>' + r.name + ' ' + r.owner.login + ' ' + r.html_url + ' - <a href="#" data-repository="' + r.name + '" data-username="' + r.owner.login + '" onclick="getCommits(this)">Get Commits</a> - <a href="#" data-repository="' + r.name +'" data-username="' + r.owner.login + '" onclick="getBranches(this)">Get Branches</a></li>').join('')}</ul>`
   document.getElementById("repositories").innerHTML = repoList
 }
+
 function getCommits(el) {
   const name = el.dataset.repository
   const user = el.dataset.username
