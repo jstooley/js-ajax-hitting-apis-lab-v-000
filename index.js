@@ -17,10 +17,10 @@ function displayRepositories(event, data) {
 
 function getCommits(el) {
   const name = el.dataset.repository
-  const user = el.dataset.username
+  const username = el.dataset.username
   const req = new XMLHttpRequest()
   req.addEventListener("load", displayCommits)
-  req.open("GET", rootURL + '/repos/' + user + '/' + name + '/commits')
+  req.open("GET", rootURL + '/repos/' + username + '/' + name + '/commits')
   req.send()
 }
 
