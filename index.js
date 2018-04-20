@@ -2,10 +2,9 @@ const rootURL= "https://api.github.com"
 
 function getRepositories() {
   const username = document.getElementById("username").value
-  const url = rootURL + "/users/" + username + "/repos"
   const req = new XMLHttpRequest()
   req.addEventListener("load", displayRepositories);
-  req.open("GET", url)
+  req.open("GET", rootURL + "/users/" + username + "/repos")
   req.send()
 }
 
