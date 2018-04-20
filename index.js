@@ -13,8 +13,8 @@ function showRepositories(event, data) {
 }
 function displayCommits() {
   const commits = JSON.parse(this.responseText)
-  const commitsList = (`<ul>${commits.map(commit => '<li><strong>' + commit.author.login + '</strong> - ' + commit.commit.message + '</li>').join('')}</ul>`+ 
-  `<ul>${commits.map(c => '<li>' + c.name + ' - <a href="#" data-repo="' + c.name + '" onclick="getBranches(this)">Display Branches</a></li>').join('')}</ul>`)
+  const commitsList = `<ul>${commits.map(commit => '<li><strong>' + commit.author.login + '</strong> - ' + commit.commit.message + '</li>').join('')}</ul>`
+  
   document.getElementById("details").innerHTML = commitsList
 }
 function getCommits(el) {
