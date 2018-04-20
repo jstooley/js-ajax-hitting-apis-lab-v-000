@@ -24,3 +24,17 @@ function getCommits(el) {
   req.open("GET", `https://api.github.com/repos/${username}/${name}/commits`)
   req.send()
 }
+function getBranches(el) {
+  const branchName = el.dataset.repository
+  const uri = rootURL + "/repos/" + el.dataset.username + "/" + branchName + "/branches"
+  const req = new XMLHttpRequest()
+  req.addEventListener("load", displayBranches)
+  req.open("GET", uri)
+  req.send()
+}
+
+function displayBranches(el) {
+  const branches = JSON.parse(this.responseText)
+   const branchesList = `<ul>${branches.map(branch => '<li>' + branch.name + '</li>').join('')}</ul>`
+   document.getElementById("details").innerHTML = branchesList
+}
